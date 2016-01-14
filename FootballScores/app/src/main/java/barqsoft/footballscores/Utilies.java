@@ -1,5 +1,11 @@
 package barqsoft.footballscores;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.text.format.DateFormat;
+
+import java.util.Date;
+
 /**
  * Created by yehya khaled on 3/3/2015.
  */
@@ -83,6 +89,30 @@ public class Utilies
             case "Sunderland AFC" : return R.drawable.sunderland;
             case "Stoke City FC" : return R.drawable.stoke_city;
             default: return R.drawable.no_icon;
+        }
+    }
+
+    /**
+     * In the future, each widget can have its own date assigned, but for now, we are going to use just one for all possible widgets
+     * @return
+     */
+    public static long getWidgetDate(Context context) {
+        SharedPreferences pref = context.getSharedPreferences("WIDGET_PREFERENCES", Context.MODE_PRIVATE);
+        return pref.getLong("WIDGET_DATE_PREF", new Date().getTime());
+    }
+
+    public static void setWidgetDate(Context context, long widgetDate) {
+        SharedPreferences pref = context.getSharedPreferences("WIDGET_PREFERENCES", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putLong("WIDGET_DATE_PREF", widgetDate);
+        editor.apply();
+    }
+
+    public static CharSequence getTodayOrDateTimeFormat(Context context, long unixTime) {
+        if (android.text.format.DateUtils.isToday(unixTime)) {
+            return context.getString(R.string.today);
+        } else {
+            return DateFormat.getLongDateFormat(context).format(new Date(unixTime));
         }
     }
 }
