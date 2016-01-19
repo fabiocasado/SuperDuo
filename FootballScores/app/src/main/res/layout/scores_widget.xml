@@ -1,9 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:padding="@dimen/widget_margin">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/widget_margin">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,37 +15,41 @@
             android:id="@+id/widget_previous_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/previous"/>
+            android:contentDescription="@string/desc_widget_bt_previous"
+            android:text="@string/previous" />
 
         <TextView
             android:id="@+id/widget_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAppearance="?android:textAppearanceMedium"
             android:gravity="center"
+            android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@android:color/black"
-            tools:text="Today"/>
+            tools:text="Today" />
 
         <Button
             android:id="@+id/widget_next_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/next"/>
+            android:contentDescription="@string/desc_widget_bt_next"
+            android:text="@string/next" />
 
     </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/green13"
+        android:padding="@dimen/widget_list_padding">
 
         <ListView
             android:id="@+id/widget_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@null"
-            android:dividerHeight="0dp"
-            tools:listitem="@layout/scores_list_item"/>
+            android:dividerHeight="8dp"
+            tools:listitem="@layout/scores_list_item" />
 
         <TextView
             android:id="@+id/widget_empty"
@@ -57,7 +61,7 @@
             android:text="@string/empty_scores"
             android:textAppearance="?android:textAppearanceLarge"
             android:textColor="@android:color/black"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
     </FrameLayout>
 
 

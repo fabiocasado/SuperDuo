@@ -86,10 +86,10 @@ public class ScoresRemoteViewsService extends RemoteViewsService {
                 views.setTextViewText(R.id.home_name, data.getString(ScoresAdapter.COL_HOME));
                 views.setTextViewText(R.id.away_name, data.getString(ScoresAdapter.COL_AWAY));
                 views.setTextViewText(R.id.date_textview, data.getString(ScoresAdapter.COL_MATCHTIME));
-                views.setTextViewText(R.id.score_textview, Utilies.getScores(data.getInt(ScoresAdapter.COL_HOME_GOALS), data.getInt(ScoresAdapter.COL_AWAY_GOALS)));
-                views.setImageViewResource(R.id.home_crest, Utilies.getTeamCrestByTeamName(
+                views.setTextViewText(R.id.score_textview, Utilies.getScores(getBaseContext(), data.getInt(ScoresAdapter.COL_HOME_GOALS), data.getInt(ScoresAdapter.COL_AWAY_GOALS)));
+                views.setImageViewResource(R.id.home_crest, Utilies.getTeamCrestByTeamName(getBaseContext(),
                         data.getString(ScoresAdapter.COL_HOME)));
-                views.setImageViewResource(R.id.away_crest, Utilies.getTeamCrestByTeamName(
+                views.setImageViewResource(R.id.away_crest, Utilies.getTeamCrestByTeamName(getBaseContext(),
                         data.getString(ScoresAdapter.COL_AWAY)));
 
                 Intent fillInIntent = new Intent(Intent.ACTION_MAIN);

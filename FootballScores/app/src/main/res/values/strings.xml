@@ -41,4 +41,12 @@
     <string name="empty_scores">No football scores today!</string>
     <string name="previous">&lt;</string>
     <string name="next">&gt;</string>
+    <string name="desc_share_score">Share score</string>
+    <string name="desc_home_crest">Home team crest</string>
+    <string name="desc_away_crest">Away team crest</string>
+    <string name="desc_widget_bt_previous">Show matches from previous day</string>
+    <string name="desc_widget_bt_next">Show matches from next day</string>
+    <string name="unkown_league">Not known League. Please report</string>
+    <string name="score_divider" translatable="false">" - "</string>
+
 </resources>
