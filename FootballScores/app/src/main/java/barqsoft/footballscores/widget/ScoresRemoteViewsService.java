@@ -1,22 +1,18 @@
 package barqsoft.footballscores.widget;
 
 import android.annotation.TargetApi;
-import android.app.AlarmManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Build;
-import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import barqsoft.footballscores.DatabaseContract;
-import barqsoft.footballscores.MainScreenFragment;
 import barqsoft.footballscores.R;
 import barqsoft.footballscores.ScoresAdapter;
 import barqsoft.footballscores.Utilies;
@@ -83,10 +79,12 @@ public class ScoresRemoteViewsService extends RemoteViewsService {
                 RemoteViews views = new RemoteViews(getPackageName(),
                         R.layout.scores_list_item);
 
+                boolean isRtl = getResources().getBoolean(R.bool.rtl);
+
                 views.setTextViewText(R.id.home_name, data.getString(ScoresAdapter.COL_HOME));
                 views.setTextViewText(R.id.away_name, data.getString(ScoresAdapter.COL_AWAY));
                 views.setTextViewText(R.id.date_textview, data.getString(ScoresAdapter.COL_MATCHTIME));
-                views.setTextViewText(R.id.score_textview, Utilies.getScores(getBaseContext(), data.getInt(ScoresAdapter.COL_HOME_GOALS), data.getInt(ScoresAdapter.COL_AWAY_GOALS)));
+                views.setTextViewText(R.id.score_textview, Utilies.getScores(getBaseContext(), data.getInt(isRtl ? ScoresAdapter.COL_AWAY_GOALS : ScoresAdapter.COL_HOME_GOALS), data.getInt(isRtl ? ScoresAdapter.COL_HOME_GOALS : ScoresAdapter.COL_AWAY_GOALS)));
                 views.setImageViewResource(R.id.home_crest, Utilies.getTeamCrestByTeamName(getBaseContext(),
                         data.getString(ScoresAdapter.COL_HOME)));
                 views.setImageViewResource(R.id.away_crest, Utilies.getTeamCrestByTeamName(getBaseContext(),
@@ -98,11 +96,6 @@ public class ScoresRemoteViewsService extends RemoteViewsService {
                 views.setOnClickFillInIntent(R.id.score_item, fillInIntent);
 
                 return views;
-            }
-
-            @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
-            private void setRemoteContentDescription(RemoteViews views, String description) {
-//                views.setContentDescription(R.id.widget_icon, description);
             }
 
             @Override
